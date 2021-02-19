@@ -12,13 +12,13 @@ public class Search {
 		this.num = num; 
 		this.arrayList = arrl;
 		if(arrl.contains(num) == false) {
-			System.out.println("Expense " + num + " not found, try again..");
+			System.out.println("Expense of " + num + " not found, try again...\n");
 			return arrl;
 		}
 		else
 			for(int i : arrl) {
 				if(i == num) {
-					System.out.println("Expense " + num + " found.");
+					System.out.println("Expense of " + num + " found.\n");
 				}
 			}
 		return arrl;

@@ -7,6 +7,7 @@ public class QuickSort {
 	int arr[];
 
 	int partition(int arr[], int low, int high) {
+		
 		int pivot = arr[high];
 		int i = (low - 1); // index of smaller element
 		for(int j = low; j < high; j++) { 
@@ -27,6 +28,7 @@ public class QuickSort {
 	}
 
 	void sort(int arr[], int low, int high) {
+		
 		if (low < high) {
 			int pi = partition(arr, low, high);
 			sort(arr, low, pi - 1);
@@ -35,7 +37,9 @@ public class QuickSort {
 	}
 	
  	public void printArray(int arr[]) {
+ 		
  		int n = arr.length;
+ 		System.out.println("Your expenses have been sorted...");
  		for (int i = 0; i < n; ++i)
  			System.out.print(arr[i] + " ");
  		}
