@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+// Class to prompt and provide user with options for accessing application functionality
 public class Options {
 
 	int options;
     private static final int QUIT = 6;
+    
 	private ArrayList<Integer> expenses = new ArrayList<Integer>();
     private static Scanner sc = new Scanner(System.in);
     
+    // Method to prompt for, and receive user input based on user's desired action
 	public void optionsSelection() throws InputMismatchException {
 		
         String[] arr = {"1. I wish to review my expenditure",
@@ -33,7 +36,7 @@ public class Options {
         	options = QUIT;
         	}
         do {
-        switch (options){
+        switch(options) {
             case 1:
             	System.out.println("Your saved expenses are listed below: \n");
                 System.out.println(getExpenses() + "\n");
@@ -41,7 +44,7 @@ public class Options {
                 optionsSelection();
                 break;
             case 2:
-                System.out.print("Enter the value to add your expenses: \n");
+                System.out.print("Enter the value to add your expenses: ");
                 try {
                 	int value =  sc.nextInt();
                     expenses.add(value);
@@ -86,25 +89,32 @@ public class Options {
                 options = QUIT;
                 break;   
         	}
-        }while(options != QUIT);
-        
+        } while(options != QUIT);
     }
 
+	// Method to retrieve expense List 
     public ArrayList<Integer> getExpenses() {
     	
 		return expenses;
 	}
 
+    // Method to set the values of the expense List
 	public void setExpenses(ArrayList<Integer> expenses) {
 		
 		this.expenses = expenses;
 	}
 
-	private static void closeApp() {
-		
-        System.out.println("Quitting Expense Manager... \nThank you!");
+	// Method to export the initial List as well as any updated Lists to the sort class
+    private ArrayList<Integer> sortExpenses(ArrayList<Integer> arrayList) {
+
+		int n = expenses.size();
+    	Sort qs = new Sort(expenses);
+    	qs.startQuickSort(0, n - 1);
+    	qs.printArray();
+		return expenses;
     }
     
+    // Method to export the initial List as well as any updated Lists to the search class
     private static void searchExpenses(ArrayList<Integer> expenses) {
     	
     	Search sear = new Search();
@@ -112,26 +122,10 @@ public class Options {
         int numToSearch = sc.nextInt();
         sear.linearSearch(expenses, numToSearch);
     }
-    // TODO: handle incorrect user input for opt2 - hangs when user enters an expense value instead of an option (try catch on the switch statement)
-    private ArrayList<Integer> sortExpenses(ArrayList<Integer> arrayList) {
-    	
-    	final int[] arr = new int[arrayList.size()];
-		int idx = 0;
-		int n = arr.length;
+
+    // Method to close the application safely
+	private static void closeApp() {
 		
-    	QuickSort qs = new QuickSort();
-    	
-		for(final Integer val : arrayList) {
-			arr[idx++] = val;
-		}
-		
-    	qs.sort(arr, 0, n - 1);
-    	qs.printArray(arr);
-    	System.out.println("\n");
-    	expenses.clear();
-    	for(int i : arr) {
-    		expenses.add(i);
-    	}
-		return expenses;
+        System.out.println("Quitting Expense Manager... \nThank you!");
     }
 }

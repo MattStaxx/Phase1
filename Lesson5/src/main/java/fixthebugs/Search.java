@@ -2,11 +2,13 @@ package fixthebugs;
 
 import java.util.ArrayList;
 
+//Method to perform a linear search on the imported ArrayList 
 public class Search {
 	
-	private ArrayList<Integer> arrayList;
 	private int num;
+	private ArrayList<Integer> arrayList;
 
+	// Method to carry out the search operation, and return found/not found message
 	public ArrayList<Integer> linearSearch(ArrayList<Integer> arrl, int num) {
 
 		this.num = num; 
