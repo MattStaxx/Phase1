@@ -16,11 +16,11 @@ public class Options {
     // Method to prompt for, and receive user input based on user's desired action
 	public void optionsSelection() throws InputMismatchException {
 		
-        String[] arr = {"1. I wish to review my expenditure",
-                "2. I wish to add my expenditure",
-                "3. I wish to delete my expenditure",
-                "4. I wish to sort the expenditures",
-                "5. I wish to search for a particular expenditure",
+        String[] arr = {"1. I wish to review my expenses",
+                "2. I wish to add an expense",
+                "3. I wish to delete my expenses",
+                "4. I wish to sort the expenses",
+                "5. I wish to search for a particular expense",
                 "6. Close the application",
         };
         
@@ -71,6 +71,7 @@ public class Options {
                 optionsSelection();
                 break;
             case 4:
+                System.out.println("Your expenses have been sorted in ascending order, and are listed below:");
                 sortExpenses(getExpenses());
                 System.out.println("Please make another selection...");
                 optionsSelection();
@@ -118,7 +119,7 @@ public class Options {
     private static void searchExpenses(ArrayList<Integer> expenses) {
     	
     	Search sear = new Search();
-        System.out.print("Enter the expense you want to search:  ");
+        System.out.print("Enter the expense you want to search for:  ");
         int numToSearch = sc.nextInt();
         sear.linearSearch(expenses, numToSearch);
     }

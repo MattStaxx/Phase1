@@ -19,7 +19,7 @@ public class FixTheBugsMain {
     	op.setExpenses(expenses);
     	// Welcome message and user prompt
         System.out.println("\n**************************************");
-        System.out.println("  Welcome to the Expenditure Manager ");
+        System.out.println("  Welcome to the Expense Manager ");
         System.out.println("**************************************");
         System.out.println("Enter a number from 1 - 6 to get started...\n");
         // call to begin the option selection functionality

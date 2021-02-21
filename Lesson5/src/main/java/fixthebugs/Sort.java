@@ -57,7 +57,6 @@ public class Sort {
                 init++;
         	} else {
         		return length;
-
         	}
         }
     }
