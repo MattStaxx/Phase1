@@ -2,59 +2,55 @@ package virtualkey.screens;
 
 import java.util.ArrayList;
 import virtualkey.entities.Files;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import virtualkey.userinput.UserInput;
 
 public class DeleteFileScreen implements Screen {
+	
+	static Files f = new Files();
+	private static ArrayList<String> files = f.getFileList();
+	private static ArrayList<String> options = new ArrayList<String>();
+	
+	FileManagementScreen fms = new FileManagementScreen();
+	UserInput ui = new UserInput();
 
-	private int selectedOption;
-	private static final int QUIT = 2;
-	Files f = new Files();
-	ArrayList<String> fileList = new ArrayList<String>();
+	public DeleteFileScreen() {
+		
+		options.add("1. Delete a File");
+		options.add("2. Return to main menu");
+	}
 
 	@Override
 	public void show() {
-		// TODO Auto-generated method stub
-		
+		// TODO: configure to use DisplayFiles class
+		System.out.println("\n--Delete File Menu--\n");
+    	System.out.println("Current files listed below:");
+    	files.sort(String.CASE_INSENSITIVE_ORDER);
+    	files.forEach(System.out::println);
+    	System.out.println("\nSelect an option from the choices below...");
+    	options.forEach(System.out::println);
 	}
 	
-	public void deleteFile() {
-		
-		fileList = f.getFileList();
-		fileList.clear();
-		System.out.println("Deleted List" + f.getFileList());
-	}
+	public void activate() {
 
-	public void getUserInput() {
-        
-        while((selectedOption = this.getOption()) != QUIT) {
-            this.addFileNavi(selectedOption);
-        }
-    }
-    
-	private int getOption() {
-
-		int returnOption = 0;
-		Scanner in = new Scanner(System.in);
 		show();
-		try {
-			returnOption = in.nextInt();
-		} catch(InputMismatchException ex) {
-    		}
-		return returnOption;
+		deleteFileNavi(ui.getUserInput());
 	}
 
-	public void addFileNavi(int option) {
+	public void deleteFileNavi(int option) {
 		
 		switch(option) {
 		case 1:
-			deleteFile();
+			f.deleteFile();
+			activate();
 			break;
 		case 2:
 			System.out.println("Returning to menu...");
-			selectedOption = QUIT;
+			fms.activate();
+			break;
 		default:
 			System.out.println("Invalid Option...");
+			activate();
+			break;
 		}
 	}
 }

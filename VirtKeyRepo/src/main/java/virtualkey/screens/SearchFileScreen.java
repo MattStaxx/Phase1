@@ -1,72 +1,61 @@
 package virtualkey.screens;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 import virtualkey.entities.Files;
+import virtualkey.userinput.UserInput;
 
 public class SearchFileScreen implements Screen {
-
-	String file;
-	private int selectedOption;
-	private static final int QUIT = 2;
-	private static ArrayList<String> fileList = new ArrayList<String>();
-	Files f = new Files();
-	Scanner in = new Scanner(System.in);
 	
-	public SearchFileScreen(ArrayList<String> list) {
+	static Files f = new Files();
+	private static ArrayList<String> files = f.getFileList();
+	private static ArrayList<String> options = new ArrayList<String>();
+
+	UserInput ui = new UserInput();
+	FileManagementScreen fms = new FileManagementScreen();
+	
+	public SearchFileScreen() {
 		
-		SearchFileScreen.fileList = list;
+		options.add("1. Search a File");
+		options.add("2. Return to main menu");
 	}
 
 	@Override
 	public void show() {
-		// TODO Auto-generated method stub
-		
+		// TODO: configure to use DisplayFiles class
+		System.out.println("\n--Search File Menu--\n");
+    	System.out.println("Current files listed below:");
+    	files.sort(String.CASE_INSENSITIVE_ORDER);
+    	files.forEach(System.out::println);
+    	System.out.println("\nSelect an option from the choices below...");
+    	options.forEach(System.out::println);
+	}
+
+	public void activate() {
+
+		show();
+		searchFileNavi(ui.getUserInput());
 	}
 	
-	public String searchFile(ArrayList<String> list) {
+	public void searchFile() {
 		
-		System.out.println("Enter file name to search for >> ");
-		file = in.nextLine();
-		if(fileList.contains(file)) {
-			System.out.println(file + " found.");
-		} else {
-			System.out.println(file + " not found.");
-		}
-		return file;
-	}
-	public void getUserInput() {
-        
-        while((selectedOption = this.getOption()) != QUIT) {
-            this.searchFileNavi(selectedOption);
-        }
-    }
-    
-	private int getOption() {
-
-		int returnOption = 0;
-		Scanner in = new Scanner(System.in);
-		show();
-		try {
-			returnOption = in.nextInt();
-		} catch(InputMismatchException ex) {
-    		}
-		return returnOption;
+		f.searchFile();
 	}
 
 	public void searchFileNavi(int option) {
 		
 		switch(option) {
 		case 1:
-			searchFile(f.getFileList());
+			searchFile();
+			activate();
 			break;
 		case 2:
 			System.out.println("Returning to menu...");
-			selectedOption = QUIT;
+			fms.activate();
+			break;
 		default:
 			System.out.println("Invalid Option...");
+			activate();
+			break;
 		}
 	}
 }

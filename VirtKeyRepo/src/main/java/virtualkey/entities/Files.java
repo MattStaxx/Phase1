@@ -12,11 +12,18 @@ public class Files {
     public Files() {
     	
     }
+    
     public Files(ArrayList<String> fileList) {
     	
     	Files.fileList = fileList;
     }
-    
+
+	public String getInputString() {
+		
+		file = in.nextLine();
+        return (file);
+    }
+	
 	public ArrayList<String> getFileList() {
 		
 		return fileList;
@@ -29,9 +36,21 @@ public class Files {
         System.out.println("You are adding a file named: " + file);
 	}
 	
-	public String getInputString() {
-		
-		file = in.nextLine();
-        return (file);
-    }
+	public void deleteFile() {
+		//TODO: display formatting
+		fileList = getFileList();
+		fileList.clear();
+		System.out.println("Deleted List" + getFileList());
+	}
+	
+	public void searchFile() {
+		//TODO: display formatting
+		System.out.println("Enter file name to search for >> ");
+		String file = getInputString();
+		if(fileList.contains(file)) {
+			System.out.println(file + " found.");
+		} else {
+			System.out.println(file + " not found.");
+		}
+	}
 }
