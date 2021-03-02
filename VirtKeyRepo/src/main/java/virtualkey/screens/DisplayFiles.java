@@ -1,16 +1,14 @@
 package virtualkey.screens;
 
-import java.util.ArrayList;
-
-import virtualkey.entities.Files;
+import virtualkey.entities.WorkingDirectory;
 
 public class DisplayFiles {
 
-	Files f = new Files();
-	ArrayList<String> fileList = f.getFileList();
+	WorkingDirectory wd = new WorkingDirectory();
 	
-	public void display() {
-		// TODO: display formatting
-		fileList.forEach(System.out::println);
+	public void display() { // omit directory structure from output
+		
+		System.out.println("\nContents of pwd:");
+		wd.retrieveFiles();
 	}
 }

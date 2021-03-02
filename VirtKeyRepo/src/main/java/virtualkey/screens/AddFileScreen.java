@@ -1,40 +1,34 @@
 package virtualkey.screens;
 
 import java.util.ArrayList;
-import virtualkey.entities.Files;
+
+import virtualkey.entities.FileBuild;
 import virtualkey.userinput.UserInput;
 
 public class AddFileScreen implements Screen {
     
-	static Files f = new Files();
-	private static ArrayList<String> files = f.getFileList();
-	private static ArrayList<String> options = new ArrayList<String>();
-	
+	FileBuild fb = new FileBuild();
+	DisplayFiles dis = new DisplayFiles();
+	private ArrayList<String> options = new ArrayList<String>();
 	FileManagementScreen fms = new FileManagementScreen();
 	UserInput ui = new UserInput();
 
 	public AddFileScreen() {
-		
+
+		options.clear();
 		options.add("1. Add File");
 		options.add("2. Return to main menu");
 	}
 	
     @Override
     public void show() {
-    	// TODO: configure to use DisplayFiles class
+    	
     	System.out.println("\n--Add File Menu--\n");
-    	System.out.println("Current files listed below:");
-    	files.sort(String.CASE_INSENSITIVE_ORDER);
-    	files.forEach(System.out::println);
+    	dis.display();
     	System.out.println("\nSelect an option from the choices below...");
     	options.forEach(System.out::println);
     }
-    
-	public void addFile() {
 
-		f.buildFile();
-    }
-	
 	public void activate() {
 
 		show();
@@ -45,7 +39,7 @@ public class AddFileScreen implements Screen {
 		
 		switch(option) {
 		case 1:
-			addFile();
+			fb.buildFile();
 			activate();
 			break;
 		case 2:

@@ -5,11 +5,12 @@ import virtualkey.screens.WelcomeScreen;
 
 public class VirtualKeyApp {
 
+	static WelcomeScreen ws = new WelcomeScreen();
+	static FileManagementScreen fms = new FileManagementScreen();
+	
 	public static void main(String[] args) {
 
-		WelcomeScreen ws = new WelcomeScreen();
 		ws.show();
-		FileManagementScreen fms = new FileManagementScreen();
 		fms.activate();
 	}
 }
