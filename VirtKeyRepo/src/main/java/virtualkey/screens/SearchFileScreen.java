@@ -12,6 +12,10 @@ public class SearchFileScreen implements Screen {
 	FileManagementScreen fms = new FileManagementScreen();
 	private static ArrayList<String> options = new ArrayList<String>();
 
+	// Constructor that adds String elements to an ArrayList, these elements each represent an application functionality
+    // an ArrayList is used here for scalability and ease of code management, if application options were to change.
+	// the clear() method empties the ArrayList so that when called multiple times, the List will always contain only one 
+	// set of options
 	public SearchFileScreen() {
 		
 		options.clear();
@@ -19,6 +23,7 @@ public class SearchFileScreen implements Screen {
 		options.add("2. Return to main menu");
 	}
 
+	// Method to be used with the Screen interface, and provide SearchFileScreen-unique prompt dialogue.
 	@Override
 	public void show() {
 
@@ -28,24 +33,27 @@ public class SearchFileScreen implements Screen {
     	options.forEach(System.out::println);
 	}
 
+	// activate() method "resets" the searchFileNavi() selection loop without ending the loop, 
+    // as well as refreshes the relevant screen header.
 	public void activate() {
 
 		show();
 		searchFileNavi(ui.getUserInput());
 	}
 
+	// searchFileNavi() method to run a switch statement used to determine what actions to take based on user input
 	public void searchFileNavi(int option) {
 		
 		switch(option) {
-		case 1:
+		case 1: // Option to confirm search file selection
 			fb.searchFile();
 			activate();
 			break;
-		case 2:
+		case 2: //  Option to return to main menu
 			System.out.println("Returning to menu...");
 			fms.activate();
 			break;
-		default:
+		default: // Functionality to maintain the loop if unexpected user-entry occurs
 			System.out.println("Invalid Option...");
 			activate();
 			break;

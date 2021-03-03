@@ -6,7 +6,8 @@ public class DisplayFiles {
 
 	WorkingDirectory wd = new WorkingDirectory();
 	
-	public void display() { // omit directory structure from output
+	// display() method facilitates output of the list of files at several different points in the application 
+	public void display() {
 		
 		System.out.println("\nContents of pwd:");
 		wd.retrieveFiles();
