@@ -40,7 +40,7 @@ public class FileBuild {
 			} else {
 				Path file = wd.getAbsPath().resolve(fileName);
 				Files.createFile(file).toAbsolutePath();
-				System.out.println("File created: " + file.getFileName() + " ...in directory: " + wd.getAbsPath());
+				System.out.println("File created: " + file.getFileName() + "   in directory:  " + wd.getAbsPath());
 			}
 		} catch(FileAlreadyExistsException fax) {
 			System.err.println("File already exists with that name...");
@@ -65,7 +65,7 @@ public class FileBuild {
 			String fileName = in.nextLine();
 			Path file = wd.getAbsPath().resolve(fileName);
 			if(Files.deleteIfExists(file) == true) {
-				System.out.println("File deleted: " + file.getFileName() + " ...from directory: " + wd.getAbsPath());
+				System.out.println("File deleted: " + file.getFileName() + "   from directory:  " + wd.getAbsPath());
 			} else {
 				System.err.println("ERROR: FILE NOT FOUND...NO FILES DELETED");
 			}
